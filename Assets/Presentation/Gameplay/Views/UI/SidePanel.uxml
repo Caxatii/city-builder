@@ -1,0 +1,3 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:ListView name="ElementsContainer" style="position: absolute; top: 0%; bottom: 0%; right: 0%; left: 85%; background-color: rgba(0, 0, 0, 0.72);" />
+</ui:UXML>
