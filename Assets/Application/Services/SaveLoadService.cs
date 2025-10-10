@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using ContractsInterfaces.FactoriesApplication;
 using ContractsInterfaces.Repositories;
 using ContractsInterfaces.ServicesApplication;
+using Domain.Gameplay.MessagesDTO;
+using MessagePipe;
 using Newtonsoft.Json;
 using UnityEngine;
 using VContainer;
@@ -13,13 +15,15 @@ namespace Application.Services
         private const string SaveKey = "DATA";
 
         [Inject] private IModelFactoryService _factoryService;
+        [Inject] private ISubscriber<SaveGameDTO> _subscriber;
 
         private JsonSerializerSettings _serializerSettings;
-        
         private Dictionary<string, object> _data;
 
         public void Initialize()
         {
+            _subscriber.Subscribe(this);
+            
             _serializerSettings = new JsonSerializerSettings
             {
                 Formatting = Formatting.Indented,
@@ -50,6 +54,9 @@ namespace Application.Services
             
             PlayerPrefs.SetString(SaveKey, serializedData);
         }
+
+        public void Handle(SaveGameDTO message) => 
+            Save();
 
         public void Dispose()
         {

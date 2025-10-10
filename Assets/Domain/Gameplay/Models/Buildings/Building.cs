@@ -1,7 +1,9 @@
+using System;
 using Domain.Gameplay.Models.Buildings.Effects;
 
 namespace Domain.Gameplay.Models.Buildings
 {
+    [Serializable]
     public class Building
     {
         public Building(int level, string name, EffectBase effect)

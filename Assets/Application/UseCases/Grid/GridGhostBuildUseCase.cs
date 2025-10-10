@@ -21,13 +21,15 @@ namespace Application.UseCases.Grid
         [Inject] private IGameplayBuildingsRepository _buildingsRepository;
         [Inject] private ICurrencyRepository _currencyRepository;
         [Inject] private ISaveLoadService _saveLoadService;
+        [Inject] private GridView _gridView;
+        
         [Inject] private ISubscriber<BuildingButtonClickedDTO> _subscriber;
         [Inject] private IPublisher<NotEnoughResources> _notEnoughPublisher;
         [Inject] private IPublisher<TryPlaceDTO> _tryPlacePublisher;
-        [Inject] private GridView _gridView;
 
         private CurrencyModel _currencyModel;
         private BuildingView _view;
+        private CellView _currentCell;
         private IBuildingRepository _currentRepository;
         
         public void Initialize()
@@ -54,7 +56,12 @@ namespace Application.UseCases.Grid
                 return;
             }
 
+            if(_view)
+                Object.Destroy(_view.gameObject);
+            
             _view = Object.Instantiate(building.Prefab);
+            _view.transform.position = _currentCell.transform.position;
+            
             _currentRepository = building;
         }
 
@@ -71,6 +78,8 @@ namespace Application.UseCases.Grid
 
         private void OnPointerEnter(CellView view)
         {
+            _currentCell = view;
+            
             if(_view == null)
                 return;
             

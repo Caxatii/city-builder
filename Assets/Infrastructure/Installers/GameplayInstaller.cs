@@ -27,6 +27,7 @@ namespace Infrastructure.Installers
     public class GameplayInstaller : LifetimeScope
     {
         [SerializeField] private float _rewardDelay;
+        [SerializeField] private float _autoSaveDelay;
         
         [SerializeField, Required] private CellView _cellViewPrefab;
         [SerializeField, Required] private CameraView _camera;
@@ -71,10 +72,8 @@ namespace Infrastructure.Installers
             builder.RegisterEntryPoint<SaveLoadService>().As<ISaveLoadService>();
             builder.RegisterEntryPoint<CurrencyService>();
             
-            builder.RegisterEntryPoint(resolver => 
-                    new TimerService<AccrueRemunerationDTO>(
-                        _rewardDelay,
-                        resolver.Resolve<IPublisher<AccrueRemunerationDTO>>()), Lifetime.Singleton);
+            RegisterTimer<AccrueRemunerationDTO>(builder, _rewardDelay);
+            RegisterTimer<SaveGameDTO>(builder, _autoSaveDelay);
             
             builder.RegisterInstance<IModelFactoryService, ModelFactoryService>(CreateModelFactory());
         }
@@ -116,6 +115,14 @@ namespace Infrastructure.Installers
             factory.Add<IncreaseGoldEffectRepository>(new IncreaseEffectFactory());
             
             return factory;
+        }
+
+        private void RegisterTimer<TMessage>(IContainerBuilder builder, float delay) where TMessage : new()
+        {
+            builder.RegisterEntryPoint(resolver => 
+                new TimerService<TMessage>(
+                    delay,
+                    resolver.Resolve<IPublisher<TMessage>>()), Lifetime.Singleton);
         }
     }
 }

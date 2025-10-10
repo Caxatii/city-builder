@@ -1,6 +1,7 @@
 using ContractsInterfaces.ServicesApplication;
 using Core;
 using Domain.Gameplay.MessagesDTO;
+using Domain.Gameplay.Models;
 using MessagePipe;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,6 +13,7 @@ namespace Application.Services
     {
         [Inject] private IPublisher<RawMoveInputDTO> _movePublisher;
         [Inject] private IPublisher<ScrollChangedDTO> _scrollPublisher;
+        [Inject] private IPublisher<HotKeyPressedDTO> _hotKeyPublisher;
 
         private InputSystemActions _actions;
         
@@ -21,12 +23,25 @@ namespace Application.Services
             _actions.Player.Enable();
             
             _actions.Player.Scroll.performed += OnScrollPerformed;
+            _actions.Player.HotKey1.performed += OnHotKey1Performed;
+            _actions.Player.HotKey2.performed += OnHotKey2Performed;
+            _actions.Player.HotKey3.performed += OnHotKey3Performed;
         }
 
-        private void OnScrollPerformed(InputAction.CallbackContext context)
-        {
+        private void OnHotKey1Performed(InputAction.CallbackContext context) => 
+            SendHotKey(0);
+
+        private void OnHotKey2Performed(InputAction.CallbackContext context) => 
+            SendHotKey(1);
+
+        private void OnHotKey3Performed(InputAction.CallbackContext context) => 
+            SendHotKey(2);
+
+        private void SendHotKey(int key) => 
+            _hotKeyPublisher.Publish(new HotKeyPressedDTO(key));
+
+        private void OnScrollPerformed(InputAction.CallbackContext context) => 
             _scrollPublisher.Publish(new ScrollChangedDTO(context.ReadValue<Vector2>().y));
-        }
 
         public void Tick()
         {
@@ -39,6 +54,10 @@ namespace Application.Services
         public void Dispose()
         {
             _actions.Player.Scroll.performed -= OnScrollPerformed;
+            _actions.Player.HotKey1.performed -= OnHotKey1Performed;
+            _actions.Player.HotKey2.performed -= OnHotKey2Performed;
+            _actions.Player.HotKey3.performed -= OnHotKey3Performed;
+            
             _actions?.Dispose();
         }
     }
