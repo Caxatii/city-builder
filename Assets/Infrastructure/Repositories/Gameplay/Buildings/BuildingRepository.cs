@@ -1,13 +1,14 @@
-using Infrastructure.Repositories.Buildings.Effects;
+using ContractsInterfaces.Repositories;
+using Infrastructure.Repositories.Gameplay.Buildings.Effects;
 using Presentation.Gameplay.Views.Buildings;
 using TriInspector;
 using UnityEngine;
 
-namespace Infrastructure.Repositories.Buildings
+namespace Infrastructure.Repositories.Gameplay.Buildings
 {
     [CreateAssetMenu(fileName = "BuildingRepository", 
         menuName = "Gameplay/Building Repository")]
-    public class BuildingRepository : ScriptableObject
+    public class BuildingRepository : ScriptableObject, IBuildingRepository
     {
         [SerializeField] private int _price;
         [SerializeField] private int _level;
@@ -22,6 +23,8 @@ namespace Infrastructure.Repositories.Buildings
         public int Level => _level;
 
         public string Name => _name;
+
+        public Sprite Preview => _preview;
 
         public BuildingView Prefab => _prefab;
         

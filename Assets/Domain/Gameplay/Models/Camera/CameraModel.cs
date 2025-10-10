@@ -2,9 +2,11 @@ using System;
 
 namespace Domain.Gameplay.Models.Camera
 {
-    public class CameraModel
+    public class CameraZoomModel
     {
-        public CameraModel(float minProjectionSize, float maxProjectionSize, float currentProjectionSize = 0)
+        private float _currentProjectionSize;
+
+        public CameraZoomModel(float minProjectionSize, float maxProjectionSize, float currentProjectionSize = 0)
         {
             ValidateMinMaxSize(minProjectionSize, maxProjectionSize);
             
@@ -16,7 +18,11 @@ namespace Domain.Gameplay.Models.Camera
                 Math.Clamp(currentProjectionSize, MinProjectionSize, MaxProjectionSize);
         }
 
-        public float CurrentProjectionSize { get; private set; }
+        public float CurrentProjectionSize
+        {
+            get => _currentProjectionSize; 
+            set => SetSize(value);
+        }
 
         public float MaxProjectionSize { get; }
 
@@ -24,7 +30,7 @@ namespace Domain.Gameplay.Models.Camera
 
         public void SetSize(float value)
         {
-            CurrentProjectionSize = Math.Clamp(value, MinProjectionSize, MaxProjectionSize);
+            _currentProjectionSize = Math.Clamp(value, MinProjectionSize, MaxProjectionSize);
         }
 
         private void ValidateMinMaxSize(float minProjectionSize, float maxProjectionSize)

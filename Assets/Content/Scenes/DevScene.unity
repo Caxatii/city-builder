@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 609392681}
   - component: {fileID: 609392680}
+  - component: {fileID: 609392682}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -174,6 +175,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &609392682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609392679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4bbd3e1e561441e818e3c71758ce3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Editor.UIDocumentTests
+  _repositories:
+  - {fileID: 11400000, guid: 57b1c29ed012eb042ac4ec8e16e1191e, type: 2}
+  - {fileID: 11400000, guid: 947cd01962f24954696846a1c0bba0a3, type: 2}
+  - {fileID: 11400000, guid: 7c4e099fc5d3a87498fc46fce8ca20b9, type: 2}
 --- !u!1 &819585351
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +332,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 919444710}
-  - component: {fileID: 919444711}
   m_Layer: 0
   m_Name: Buildings
   m_TagString: Untagged
@@ -341,22 +357,6 @@ Transform:
   - {fileID: 1420475158}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &919444711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919444709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d65b7ab51bb4c4aa4257fbce0cdfa62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: EditorOnly::EditorUtils.GridPlacer
-  _rotationValue: 45
-  _placeDistance: 10
-  _placeDirection: {x: -1, y: 0, z: 0}
-  _gizmosColor: {r: 0, g: 1, b: 0.06871343, a: 0.16862746}
 --- !u!4 &1420475158 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 266598315066243577, guid: 6eddce7396becc44d8b5682cb8f53f41, type: 3}
@@ -424,7 +424,7 @@ Camera:
   far clip plane: 1000
   field of view: 35.3
   orthographic: 1
-  orthographic size: 25.8
+  orthographic size: 4.82
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -449,7 +449,7 @@ Transform:
   m_GameObject: {fileID: 1698792740}
   serializedVersion: 2
   m_LocalRotation: {x: 0.19996412, y: -0.3736123, z: 0.08282785, w: 0.90198}
-  m_LocalPosition: {x: 42.8, y: 39, z: -59.1}
+  m_LocalPosition: {x: 52.01, y: 35.97, z: -51.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -573,6 +573,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WindMill
       objectReference: {fileID: 0}
+    - target: {fileID: 2739338665815576101, guid: 8b97e400453b75646b1256dd2beb8035, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7777762564635614161, guid: 8b97e400453b75646b1256dd2beb8035, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
@@ -670,6 +674,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mine
       objectReference: {fileID: 0}
+    - target: {fileID: 8646663880491186220, guid: 6eddce7396becc44d8b5682cb8f53f41, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -726,6 +734,10 @@ PrefabInstance:
     - target: {fileID: 2181820245346901810, guid: 1c02d4c4f1e94e14a9313e7d6983d185, type: 3}
       propertyPath: m_Name
       value: House
+      objectReference: {fileID: 0}
+    - target: {fileID: 2181820245346901810, guid: 1c02d4c4f1e94e14a9313e7d6983d185, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

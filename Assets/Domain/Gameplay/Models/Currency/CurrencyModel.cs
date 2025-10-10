@@ -4,6 +4,11 @@ namespace Domain.Gameplay.Models.Currency
 {
     public class CurrencyModel
     {
+        public CurrencyModel(int value = 0)
+        {
+            Value = value;
+        }
+
         public int Value { get; private set; }
 
         public bool IsEnough(int value) => Value >= value;

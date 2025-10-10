@@ -1,0 +1,41 @@
+:root {
+}
+
+.CostLabel {
+    align-content: stretch;
+    align-self: stretch;
+    justify-content: space-evenly;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    flex-wrap: wrap;
+    width: 86px;
+    height: 39px;
+    position: absolute;
+    top: 150px;
+    left: 100px;
+    font-size: 38px;
+}
+
+.SidePanel {
+    flex-grow: 1;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    left: 85%;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.6);
+    align-content: stretch;
+    justify-content: space-evenly;
+    align-self: flex-start;
+    align-items: center;
+    translate: 233px 0;
+    transition-duration: 0.1s;
+    transition-delay: 0.1s;
+}
+
+.SidePanel:hover {
+    rotate: -0.24 0 1 0;
+    translate: 1px 0;
+    transition-timing-function: ease-in-out-bounce;
+}

@@ -1,3 +1,14 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:ListView name="ElementsContainer" style="position: absolute; top: 0%; bottom: 0%; right: 0%; left: 85%; background-color: rgba(0, 0, 0, 0.72);" />
+    <Style src="project://database/Assets/Presentation/Gameplay/Views/UI/USS/SidePanel.uss?fileID=7433441132597879392&amp;guid=1fbfa625fceaf4c47981a83b4bc63290&amp;type=3#SidePanel" />
+    <ui:VisualElement name="ElementsContainer" class="SidePanel">
+        <ui:Button name="Button0" style="width: 200px; height: 200px; background-image: url(&quot;project://database/Assets/Content/2D/Sprites/WindMillPreview.jpg?fileID=21300000&amp;guid=0c1137ee23619ec4daf38b02be296af1&amp;type=3#WindMillPreview&quot;);">
+            <ui:Label text="Label" name="Cost" class="CostLabel" style="align-content: stretch; align-self: stretch; justify-content: space-evenly; flex-direction: column-reverse; align-items: stretch; flex-wrap: wrap; width: 86px; height: 39px; position: absolute; top: 150px; left: 100px;" />
+        </ui:Button>
+        <ui:Button name="Button1" style="width: 200px; height: 200px; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=3506167780502562645&amp;guid=174dcd17eb995784a942a17bcd461daa&amp;type=3#console.erroricon@2x&quot;);">
+            <ui:Label text="Label" name="Cost" class="CostLabel" style="align-content: stretch; align-self: stretch; justify-content: space-evenly; flex-direction: column-reverse; align-items: stretch; flex-wrap: wrap; width: 86px; height: 39px; position: absolute; top: 150px; left: 100px;" />
+        </ui:Button>
+        <ui:Button name="Button2" style="width: 200px; height: 200px; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=3506167780502562645&amp;guid=174dcd17eb995784a942a17bcd461daa&amp;type=3#console.erroricon@2x&quot;);">
+            <ui:Label text="Label" name="Cost" class="CostLabel" />
+        </ui:Button>
+    </ui:VisualElement>
 </ui:UXML>

@@ -15,5 +15,6 @@ MonoBehaviour:
   _price: 150
   _level: 1
   _name: WindMill
+  _preview: {fileID: 21300000, guid: 0c1137ee23619ec4daf38b02be296af1, type: 3}
   _prefab: {fileID: 9129678309572179457, guid: 8b97e400453b75646b1256dd2beb8035, type: 3}
   _effect: {fileID: 11400000, guid: 3a101f17d94d45f42a750f90c23fccae, type: 2}

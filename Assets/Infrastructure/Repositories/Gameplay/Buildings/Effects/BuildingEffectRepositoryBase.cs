@@ -1,6 +1,7 @@
 using UnityEngine;
 
-namespace Infrastructure.Repositories.Buildings.Effects
+namespace Infrastructure.Repositories.Gameplay.Buildings.Effects
 {
-    public abstract class BuildingEffectRepositoryBase : ScriptableObject { }
+    public abstract class BuildingEffectRepositoryBase : ScriptableObject
+    { }
 }

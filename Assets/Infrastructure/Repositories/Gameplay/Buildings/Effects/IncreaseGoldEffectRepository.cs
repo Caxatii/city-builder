@@ -1,10 +1,11 @@
+using ContractsInterfaces.Repositories;
 using UnityEngine;
 
-namespace Infrastructure.Repositories.Buildings.Effects
+namespace Infrastructure.Repositories.Gameplay.Buildings.Effects
 {
     [CreateAssetMenu(fileName = "IncreaseGoldEffectRepository", 
         menuName = "Gameplay/Building Effects/Increase Gold Effect Repository")]
-    public class IncreaseGoldEffectRepository : BuildingEffectRepositoryBase
+    public class IncreaseGoldEffectRepository : BuildingEffectRepositoryBase, IIncreaseGoldEffectRepository
     {
         [SerializeField] private int _value;
 

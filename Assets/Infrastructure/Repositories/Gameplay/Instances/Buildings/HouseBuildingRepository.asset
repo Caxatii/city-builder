@@ -15,5 +15,6 @@ MonoBehaviour:
   _price: 75
   _level: 1
   _name: House
+  _preview: {fileID: 21300000, guid: 647927bb80c2f2143a832fbc0ceb9dca, type: 3}
   _prefab: {fileID: 26715761711260629, guid: 1c02d4c4f1e94e14a9313e7d6983d185, type: 3}
   _effect: {fileID: 11400000, guid: 679e89ed84fec1c4ba490f320b456419, type: 2}
