@@ -44,6 +44,7 @@ namespace Presentation.Gameplay.Views.Grid
                     viewPosition.z += j * repository.CellSize;
                     
                     view.transform.position = viewPosition;
+                    view.Initialize(new Vector2Int(i, j));
 
                     view.Clicked += OnClicked;
                     view.PointerEntered += OnPointerEntered;

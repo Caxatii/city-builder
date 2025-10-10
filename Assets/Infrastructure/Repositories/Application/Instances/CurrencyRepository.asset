@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03bb846c4b3b4072acac50d55afbd9bf, type: 3}
   m_Name: CurrencyRepository
   m_EditorClassIdentifier: Assembly-CSharp::Infrastructure.Repositories.Gameplay.Currency.CurrencyRepository
-  _startValue: 100
+  _startValue: 1000
