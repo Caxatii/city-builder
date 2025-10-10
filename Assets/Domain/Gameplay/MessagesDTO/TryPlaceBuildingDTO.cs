@@ -2,12 +2,12 @@ using Domain.Gameplay.Models.Grid;
 
 namespace Domain.Gameplay.MessagesDTO
 {
-    public readonly struct TryPlaceDTO
+    public readonly struct TryPlaceBuildingDTO
     {
         public readonly string BuildingName;
         public readonly GridPosition Position;
 
-        public TryPlaceDTO(string buildingName, GridPosition position)
+        public TryPlaceBuildingDTO(string buildingName, GridPosition position)
         {
             BuildingName = buildingName;
             Position = position;

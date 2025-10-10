@@ -2,9 +2,9 @@ using ContractsInterfaces.Repositories;
 using ContractsInterfaces.ServicesApplication;
 using ContractsInterfaces.UseCasesApplication;
 using Core;
+using Domain.Gameplay.Models.Buildings;
 using Domain.Gameplay.Models.Grid;
 using Presentation.Gameplay.Views.Grid;
-using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -14,34 +14,30 @@ namespace Application.UseCases.Grid
     {
         [Inject] private GridView _gridView;
         [Inject] private ISaveLoadService _saveLoadService;
-
-        private Color _green = Color.green;
-        private Color _red = Color.red;
         
         private GridModel _gridModel;
+        private SelectedCellModel _selectedCellModel;
         
         public void Initialize()
         {
             _gridView.PointerEnter += OnPointerEnter;
             _gridView.PointerExit += OnPointerExit;
-
-            _green.a = .2f;
-            _red.a = .2f;
         }
 
         public void PostInitialize()
         {
-            _gridModel = _saveLoadService.Load<GridModel, IGridRepository>(nameof(GridModel));
+            _gridModel = _saveLoadService.Load<GridModel, IGridRepository>();
+            _selectedCellModel = _saveLoadService.Load<SelectedCellModel>();
         }
 
         private void OnPointerEnter(CellView view)
         {
-            view.SetColor(_gridModel.IsEmpty(view.Position.AsDomain()) ? _green : _red);
+            _selectedCellModel.Position = view.Position.AsDomain();
         }
 
         private void OnPointerExit(CellView view)
         {
-            view.SetDefaultColor();
+            _selectedCellModel.Deselect();
         }
 
         public void Dispose()

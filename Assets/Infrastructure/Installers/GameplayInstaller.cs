@@ -38,8 +38,9 @@ namespace Infrastructure.Installers
         [SerializeField, Required] private GridView _gridView;
         [SerializeField, Required] private GridRepository _gridRepository;
         [SerializeField, Required] private CurrencyRepository _currencyRepository;
+        [SerializeField, Required] private CellColorizeRepository _cellColorizeRepository;
 
-        [SerializeField] private GameplayBuildingsRepository _buildingRepositories;
+        [SerializeField, Required] private GameplayBuildingsRepository _buildingRepositories;
         
         protected override void Configure(IContainerBuilder builder)
         {
@@ -58,11 +59,13 @@ namespace Infrastructure.Installers
             
             builder.RegisterEntryPoint<GridInitializeUseCase>();
             builder.RegisterEntryPoint<GridSelectionUseCase>();
+            builder.RegisterEntryPoint<GridColorizeUseCase>();
             builder.RegisterEntryPoint<GridGhostBuildUseCase>();
             builder.RegisterEntryPoint<GridPlacerUseCase>();
             
             builder.RegisterEntryPoint<SidePanelInitializeUseCase>();
             builder.RegisterEntryPoint<AddGridGoldRewardUseCase>();
+            builder.RegisterEntryPoint<GridRemoveBuildUseCase>();
         }
 
         private void RegisterServices(IContainerBuilder builder)
@@ -100,6 +103,7 @@ namespace Infrastructure.Installers
             builder.RegisterInstance(_currencyView);
             builder.RegisterInstance(_gridView);
             
+            builder.RegisterInstance<ICellColorizeRepository>(_cellColorizeRepository);
             builder.RegisterInstance<ICurrencyRepository>(_currencyRepository);
             builder.RegisterInstance<ICameraSpeedRepository>(_cameraRepository);
             builder.RegisterInstance<ICameraZoomRepository>(_cameraRepository);

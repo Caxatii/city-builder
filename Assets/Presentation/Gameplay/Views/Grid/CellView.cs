@@ -1,4 +1,5 @@
 using System;
+using Presentation.Gameplay.Views.Buildings;
 using TriInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -10,14 +11,14 @@ namespace Presentation.Gameplay.Views.Grid
         [SerializeField, Required] private MeshRenderer _renderer;
 
         private Color _defaultColor;
-        
+        private BuildingView _buildingView;
         private ICellSelectionAction[] _selectionActions;
+        
+        public Vector2Int Position { get; private set; } 
 
         public event Action<CellView> Clicked;
         public event Action<CellView> PointerEntered;
         public event Action<CellView> PointerExit;
-
-        public Vector2Int Position { get; private set; }
         
         private void Awake()
         {
@@ -30,6 +31,20 @@ namespace Presentation.Gameplay.Views.Grid
             Position = position;
         }
 
+        public void Place(BuildingView view)
+        {
+            _buildingView = view;
+        }
+
+        public void Remove()
+        {
+            if(_buildingView == null)
+                return;
+            
+            Destroy(_buildingView.gameObject);
+            _buildingView = null;
+        }
+        
         public void SetSelected(bool isSelected)
         {
             foreach (ICellSelectionAction action in _selectionActions) 

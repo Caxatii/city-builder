@@ -14,7 +14,7 @@ namespace Presentation.Gameplay.Views.Grid
     {
         [Inject] private IPublisher<PointerEnteredDTO> _enterPublisher;
 
-        private List<CellView> _cellViews = new();
+        private Dictionary<Vector2Int, CellView> _cellViews = new();
 
         public event Action<CellView> Clicked;
         public event Action<CellView> PointerEnter;
@@ -22,7 +22,7 @@ namespace Presentation.Gameplay.Views.Grid
         
         private void OnDisable()
         {
-            foreach (CellView view in _cellViews)
+            foreach (CellView view in _cellViews.Values)
             {
                 view.Clicked -= OnClicked;
                 view.PointerEntered -= OnPointerEntered;
@@ -38,7 +38,9 @@ namespace Presentation.Gameplay.Views.Grid
             {
                 for (int j = 1; j <= repository.GridSize.y; j++)
                 {
+                    Vector2Int gridPosition = new Vector2Int(i, j);
                     CellView view = Instantiate(cellView);
+                    
                     view.transform.localScale = Vector3.one * repository.CellSize;
 
                     Vector3 viewPosition = position;
@@ -46,35 +48,38 @@ namespace Presentation.Gameplay.Views.Grid
                     viewPosition.z += j * repository.CellSize;
                     
                     view.transform.position = viewPosition;
-                    view.Initialize(new Vector2Int(i, j));
+                    view.Initialize(gridPosition);
 
                     view.Clicked += OnClicked;
                     view.PointerEntered += OnPointerEntered;
                     view.PointerExit += OnPointerExit;
                     
-                    _cellViews.Add(view);
+                    _cellViews.Add(gridPosition, view);
                 }
             }
         }
 
         public void Place(BuildingView view, Vector2Int position)
         {
-            CellView cell = _cellViews.FirstOrDefault(c => c.Position == position);
-            
-            if(cell == null)
+            if(_cellViews.TryGetValue(position, out CellView cell) == false)
                 return;
-
+            
             view.transform.position = cell.transform.position;
+            cell.Place(view);
         }
 
         public void Remove(Vector2Int position)
         {
-            CellView cell = _cellViews.FirstOrDefault(c => c.Position == position);
-            
-            if(cell == null)
+            if(_cellViews.TryGetValue(position, out CellView cell) == false)
                 return;
             
-            Destroy(cell.gameObject);
+            cell.Remove();
+        }
+
+        public CellView GetCell(Vector2Int position)
+        {
+            _cellViews.TryGetValue(position, out CellView cell);
+            return cell;
         }
         
         private void OnPointerEntered(CellView view)

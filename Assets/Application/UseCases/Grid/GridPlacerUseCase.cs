@@ -18,12 +18,12 @@ using VContainer.Unity;
 
 namespace Application.UseCases.Grid
 {
-    public class GridPlacerUseCase : IUseCase, IPostInitializable, IMessageHandler<TryPlaceDTO>
+    public class GridPlacerUseCase : IUseCase, IPostInitializable, IMessageHandler<TryPlaceBuildingDTO>
     {
         [Inject] private IModelFactoryService _factoryService;
         [Inject] private ISaveLoadService _saveLoadService;
         [Inject] private IGameplayBuildingsRepository _buildings;
-        [Inject] private ISubscriber<TryPlaceDTO> _subscriber;
+        [Inject] private ISubscriber<TryPlaceBuildingDTO> _subscriber;
         
         [Inject] private GridView _gridView;
 
@@ -37,12 +37,12 @@ namespace Application.UseCases.Grid
 
         public void PostInitialize()
         {
-            _gridModel = _saveLoadService.Load<GridModel, IGridRepository>(nameof(GridModel));
+            _gridModel = _saveLoadService.Load<GridModel, IGridRepository>();
 
             _currencyModel = _saveLoadService.Load<CurrencyModel, ICurrencyRepository>(nameof(CurrencyType.Gold));
         }
 
-        public void Handle(TryPlaceDTO message)
+        public void Handle(TryPlaceBuildingDTO message)
         {
             IBuildingRepository repository = _buildings.Get(message.BuildingName);
             

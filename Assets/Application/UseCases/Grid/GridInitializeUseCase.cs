@@ -26,8 +26,7 @@ namespace Application.UseCases.Grid
 
         public void PostInitialize()
         {
-            _gridModel = 
-                _saveLoadService.Load<GridModel, IGridRepository>(nameof(GridModel), _gridRepository);
+            _gridModel = _saveLoadService.Load<GridModel, IGridRepository>(_gridRepository);
             
             _view.Initialize(_cellView, _gridRepository);
             

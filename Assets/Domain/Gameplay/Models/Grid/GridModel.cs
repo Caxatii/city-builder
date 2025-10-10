@@ -11,7 +11,7 @@ namespace Domain.Gameplay.Models.Grid
         [JsonProperty] private Cell[,] _cells;
         
         [JsonConstructor]
-        public GridModel() { }
+        private GridModel() { }
         
         public GridModel(int width, int height)
         {

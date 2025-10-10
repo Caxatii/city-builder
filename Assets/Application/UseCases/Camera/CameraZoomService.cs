@@ -25,7 +25,7 @@ namespace Application.UseCases.Camera
 
         public void PostInitialize()
         {
-            _zoomModel = _saveLoadService.Load<CameraZoomModel, ICameraZoomRepository>(nameof(CameraZoomModel));
+            _zoomModel = _saveLoadService.Load<CameraZoomModel, ICameraZoomRepository>();
 
             _cameraView.Camera.orthographicSize = _zoomModel.CurrentProjectionSize;
         }

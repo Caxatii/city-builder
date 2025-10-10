@@ -14,6 +14,7 @@ namespace Application.Services
         [Inject] private IPublisher<RawMoveInputDTO> _movePublisher;
         [Inject] private IPublisher<ScrollChangedDTO> _scrollPublisher;
         [Inject] private IPublisher<HotKeyPressedDTO> _hotKeyPublisher;
+        [Inject] private IPublisher<RemoveBuildDTO> _removePublisher;
 
         private InputSystemActions _actions;
         
@@ -23,10 +24,16 @@ namespace Application.Services
             _actions.Player.Enable();
             
             _actions.Player.Scroll.performed += OnScrollPerformed;
+            
             _actions.Player.HotKey1.performed += OnHotKey1Performed;
             _actions.Player.HotKey2.performed += OnHotKey2Performed;
             _actions.Player.HotKey3.performed += OnHotKey3Performed;
+            
+            _actions.Player.Delete.performed += OnDeletePerformed;
         }
+
+        private void OnDeletePerformed(InputAction.CallbackContext context) => 
+            _removePublisher.Publish(new RemoveBuildDTO());
 
         private void OnHotKey1Performed(InputAction.CallbackContext context) => 
             SendHotKey(0);
@@ -54,9 +61,12 @@ namespace Application.Services
         public void Dispose()
         {
             _actions.Player.Scroll.performed -= OnScrollPerformed;
+            
             _actions.Player.HotKey1.performed -= OnHotKey1Performed;
             _actions.Player.HotKey2.performed -= OnHotKey2Performed;
             _actions.Player.HotKey3.performed -= OnHotKey3Performed;
+            
+            _actions.Player.Delete.performed -= OnDeletePerformed;
             
             _actions?.Dispose();
         }

@@ -28,8 +28,8 @@ namespace Application.UseCases.Camera
 
         public void PostInitialize()
         {
-            _cameraSpeedModel = _saveLoadService.Load<CameraSpeedModel, ICameraSpeedRepository>(nameof(CameraSpeedModel));
-            _cameraZoomModel = _saveLoadService.Load<CameraZoomModel, ICameraZoomRepository>(nameof(CameraZoomModel));
+            _cameraSpeedModel = _saveLoadService.Load<CameraSpeedModel, ICameraSpeedRepository>();
+            _cameraZoomModel = _saveLoadService.Load<CameraZoomModel, ICameraZoomRepository>();
         }
 
         public void Handle(RawMoveInputDTO message)

@@ -722,6 +722,7 @@ MonoBehaviour:
   _gridView: {fileID: 2121128486}
   _gridRepository: {fileID: 11400000, guid: 471bb86337cd61d44bc11abd55327dbb, type: 2}
   _currencyRepository: {fileID: 11400000, guid: 6f8ace34f4b2b6b4e8f3c4052d527f47, type: 2}
+  _cellColorizeRepository: {fileID: 11400000, guid: 94a8f48619cf24f4d84401b644e9b546, type: 2}
   _buildingRepositories: {fileID: 11400000, guid: ee6df6003f9ba6e4fa4e02c549b41a25, type: 2}
 --- !u!4 &2056157724
 Transform:

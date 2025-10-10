@@ -29,7 +29,7 @@ namespace Application.UseCases.Grid
 
         public void PostInitialize()
         {
-            _gridModel = _saveLoadService.Load<GridModel, IGridRepository>(nameof(GridModel));
+            _gridModel = _saveLoadService.Load<GridModel, IGridRepository>();
 
             _currencyModel = _saveLoadService.Load<CurrencyModel, ICurrencyRepository>(nameof(CurrencyType.Gold));
         }

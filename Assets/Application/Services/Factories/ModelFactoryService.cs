@@ -20,5 +20,10 @@ namespace Application.Services.Factories
         {
             return (TResult)_factories[typeof(TConfig)].Create(config);
         }
+
+        public TResult Create<TResult>() where TResult : new()
+        {
+            return new TResult();
+        }
     }
 }

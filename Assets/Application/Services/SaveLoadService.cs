@@ -46,9 +46,11 @@ namespace Application.Services
                     new Dictionary<string, object>();
         }
 
-        public TResult Load<TResult, TConfig>(string key, TConfig config) where TConfig : IRepository
+        public TResult Load<TResult, TConfig>(TConfig config, string key) where TConfig : IRepository
         {
-            if (_data.TryGetValue(key, out var value))
+            key ??= typeof(TResult).Name;
+            
+            if (_data.TryGetValue(key, out object value))
                 return (TResult)value;
 
             TResult newModel = _factoryService.Create<TResult, TConfig>(config);
@@ -59,7 +61,20 @@ namespace Application.Services
 
         public TResult Load<TResult, TConfig>(string key) where TConfig : IRepository
         {
-            return Load<TResult, TConfig>(key, (TConfig)_defaultRepositories[typeof(TConfig)]);
+            return Load<TResult, TConfig>((TConfig)_defaultRepositories[typeof(TConfig)], key);
+        }
+
+        public TResult Load<TResult>(string key) where TResult : new()
+        {
+            key ??= typeof(TResult).Name;
+            
+            if (_data.TryGetValue(key, out object value))
+                return (TResult)value;
+
+            TResult newModel = _factoryService.Create<TResult>();
+            _data.Add(key, newModel);
+            
+            return newModel;
         }
 
         public void AddConfig<TConfig>(TConfig configSample) where TConfig : IRepository
