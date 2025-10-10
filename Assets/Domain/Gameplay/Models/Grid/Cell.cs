@@ -1,7 +1,9 @@
+using System;
 using Domain.Gameplay.Models.Buildings;
 
 namespace Domain.Gameplay.Models.Grid
 {
+    [Serializable]
     public struct Cell
     {
         public Cell(Building building)

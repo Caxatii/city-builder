@@ -23,7 +23,7 @@ namespace Application.UseCases.UI
         public void PostInitialize()
         {
             _currencyModel =
-                _saveLoadService.Load<CurrencyModel, ICurrencyRepository>(CurrencyType.Gold, _currencyRepository);
+                _saveLoadService.Load<CurrencyModel, ICurrencyRepository>(nameof(CurrencyType.Gold), _currencyRepository);
 
             _currencyModel.Changed += OnChanged;
             _view.Text = _currencyModel.Value.ToString();

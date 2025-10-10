@@ -45,6 +45,7 @@ namespace Infrastructure.Installers
             RegisterServices(builder);
             
             RegisterUseCases(builder);
+            
         }
 
         private void RegisterUseCases(IContainerBuilder builder)
@@ -60,12 +61,9 @@ namespace Infrastructure.Installers
 
         private void RegisterServices(IContainerBuilder builder)
         {
-            builder.UseEntryPoints(pointsBuilder =>
-            {
-                pointsBuilder.Add<InputReaderService>().As<IInputReaderService>();
-                pointsBuilder.Add<SaveLoadService>().As<ISaveLoadService>();
-                pointsBuilder.Add<CurrencyService>();
-            });
+            builder.RegisterEntryPoint<InputReaderService>().As<IInputReaderService>();
+            builder.RegisterEntryPoint<SaveLoadService>().As<ISaveLoadService>();
+            builder.RegisterEntryPoint<CurrencyService>();
             
             builder.RegisterInstance<IModelFactoryService, ModelFactoryService>(CreateModelFactory());
         }

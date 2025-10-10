@@ -2,6 +2,7 @@ using System;
 
 namespace Domain.Gameplay.Models.Camera
 {
+    [Serializable]
     public class CameraZoomModel
     {
         private float _currentProjectionSize;

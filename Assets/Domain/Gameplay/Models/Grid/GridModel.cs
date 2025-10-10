@@ -1,13 +1,18 @@
 using System;
 using System.Collections.Generic;
 using Domain.Gameplay.Models.Buildings;
+using Newtonsoft.Json;
 
 namespace Domain.Gameplay.Models.Grid
 {
+    [Serializable]
     public class GridModel
     {
-        private Cell[,] _cells;
-
+        [JsonProperty] private Cell[,] _cells;
+        
+        [JsonConstructor]
+        public GridModel() { }
+        
         public GridModel(int width, int height)
         {
             _cells = new Cell[width, height];

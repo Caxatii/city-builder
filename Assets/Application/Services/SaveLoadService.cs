@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Application.Services.Factories;
 using ContractsInterfaces.FactoriesApplication;
 using ContractsInterfaces.Repositories;
 using ContractsInterfaces.ServicesApplication;
@@ -14,10 +13,27 @@ namespace Application.Services
         private const string SaveKey = "DATA";
 
         [Inject] private IModelFactoryService _factoryService;
+
+        private JsonSerializerSettings _serializerSettings;
         
-        private Dictionary<object, object> _data;
-        
-        public TResult Load<TResult, TConfig>(object key, TConfig config) where TConfig : IRepository
+        private Dictionary<string, object> _data;
+
+        public void Initialize()
+        {
+            _serializerSettings = new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented,
+                TypeNameHandling = TypeNameHandling.All,
+                NullValueHandling = NullValueHandling.Ignore,
+                DefaultValueHandling = DefaultValueHandling.Ignore,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            };
+            
+            _data = JsonConvert.DeserializeObject<Dictionary<string, object>>(PlayerPrefs.GetString(SaveKey), _serializerSettings) ?? 
+                    new Dictionary<string, object>();
+        }
+
+        public TResult Load<TResult, TConfig>(string key, TConfig config) where TConfig : IRepository
         {
             if (_data.TryGetValue(key, out var value))
                 return (TResult)value;
@@ -30,14 +46,9 @@ namespace Application.Services
 
         public void Save()
         {
-            string serializedData = JsonConvert.SerializeObject(_data);
+            string serializedData = JsonConvert.SerializeObject(_data, Formatting.Indented, _serializerSettings);
+            
             PlayerPrefs.SetString(SaveKey, serializedData);
-        }
-
-        public void Initialize()
-        {
-            _data = JsonConvert.DeserializeObject<Dictionary<object, object>>(PlayerPrefs.GetString(SaveKey)) ?? 
-                    new Dictionary<object, object>();
         }
 
         public void Dispose()

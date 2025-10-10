@@ -45,10 +45,10 @@ namespace Application.UseCases.Grid
         public void PostInitialize()
         {
             _gridModel = 
-                _saveLoadService.Load<GridModel, IGridRepository>(typeof(GridModel), _gridRepository);
+                _saveLoadService.Load<GridModel, IGridRepository>(nameof(GridModel), _gridRepository);
 
             _currencyModel =
-                _saveLoadService.Load<CurrencyModel, ICurrencyRepository>(CurrencyType.Gold, _currencyRepository);
+                _saveLoadService.Load<CurrencyModel, ICurrencyRepository>(nameof(CurrencyType.Gold), _currencyRepository);
         }
 
         public void Handle(TryPlaceDTO message)

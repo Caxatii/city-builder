@@ -45,7 +45,7 @@ namespace Application.UseCases.Grid
         public void PostInitialize()
         {
             _currencyModel =
-                _saveLoadService.Load<CurrencyModel, ICurrencyRepository>(CurrencyType.Gold, _currencyRepository);
+                _saveLoadService.Load<CurrencyModel, ICurrencyRepository>(nameof(CurrencyType.Gold), _currencyRepository);
         }
 
         public void Handle(BuildingButtonClickedDTO message)

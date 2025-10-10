@@ -31,10 +31,10 @@ namespace Application.UseCases.Camera
         public void PostInitialize()
         {
             _cameraSpeedModel = 
-                _saveLoadService.Load<CameraSpeedModel, ICameraSpeedRepository>(typeof(CameraSpeedModel),
+                _saveLoadService.Load<CameraSpeedModel, ICameraSpeedRepository>(nameof(CameraSpeedModel),
                     _cameraSpeedRepository);
 
-            _cameraZoomModel = _saveLoadService.Load<CameraZoomModel, ICameraZoomRepository>(typeof(CameraZoomModel),
+            _cameraZoomModel = _saveLoadService.Load<CameraZoomModel, ICameraZoomRepository>(nameof(CameraZoomModel),
                 _cameraZoomRepository);
         }
 

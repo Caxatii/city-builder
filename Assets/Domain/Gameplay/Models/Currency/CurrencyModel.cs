@@ -2,6 +2,7 @@ using System;
 
 namespace Domain.Gameplay.Models.Currency
 {
+    [Serializable]
     public class CurrencyModel
     {
         public CurrencyModel(int value = 0)

@@ -2,6 +2,7 @@ using System;
 
 namespace Domain.Gameplay.Models.Grid
 {
+    [Serializable]
     public readonly struct GridPosition
     {
         public readonly int Width;

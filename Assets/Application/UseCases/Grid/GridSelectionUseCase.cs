@@ -33,7 +33,7 @@ namespace Application.UseCases.Grid
         public void PostInitialize()
         {
             _gridModel = 
-                _saveLoadService.Load<GridModel, IGridRepository>(typeof(GridModel), _gridRepository);
+                _saveLoadService.Load<GridModel, IGridRepository>(nameof(GridModel), _gridRepository);
         }
 
         private void OnPointerEnter(CellView view)
