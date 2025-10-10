@@ -1,21 +1,23 @@
 using ContractsInterfaces.Repositories;
 using ContractsInterfaces.ServicesApplication;
 using Domain.Gameplay.Models.Currency;
-using R3;
+using Presentation.Gameplay.Views.UI;
+using VContainer;
 using VContainer.Unity;
 
 namespace Application.UseCases.UI
 {
     public class CurrencyService : IService, IPostInitializable
     {
-        private ICurrencyRepository _currencyRepository;
-        
-        private ISaveLoadService _saveLoadService;
+        [Inject] private ICurrencyRepository _currencyRepository;
+        [Inject] private ISaveLoadService _saveLoadService;
+        [Inject] private CurrencyView _view;
+
         private CurrencyModel _currencyModel;
-        
+
         public void Initialize()
         {
-            
+            _view.Initialize();
         }
 
         public void PostInitialize()
@@ -24,13 +26,17 @@ namespace Application.UseCases.UI
                 _saveLoadService.Load<CurrencyModel, ICurrencyRepository>(CurrencyType.Gold, _currencyRepository);
 
             _currencyModel.Changed += OnChanged;
+            _view.Text = _currencyModel.Value.ToString();
         }
 
-        private void OnChanged(int obj)
+        private void OnChanged(int value)
         {
-            
+            _view.Text = value.ToString();
         }
 
-        public void Dispose() { }
+        public void Dispose()
+        {
+            _currencyModel.Changed -= OnChanged;
+        }
     }
 }

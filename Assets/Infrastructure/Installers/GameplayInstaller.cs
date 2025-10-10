@@ -28,6 +28,7 @@ namespace Infrastructure.Installers
         [SerializeField, Required] private CellView _cellViewPrefab;
         [SerializeField, Required] private CameraView _camera;
         [SerializeField, Required] private SidePanelView _sidePanelView;
+        [SerializeField, Required] private CurrencyView _currencyView;
 
         [SerializeField, Required] private CameraRepository _cameraRepository;
         [SerializeField, Required] private GridView _gridView;
@@ -63,6 +64,7 @@ namespace Infrastructure.Installers
             {
                 pointsBuilder.Add<InputReaderService>().As<IInputReaderService>();
                 pointsBuilder.Add<SaveLoadService>().As<ISaveLoadService>();
+                pointsBuilder.Add<CurrencyService>();
             });
             
             builder.RegisterInstance<IModelFactoryService, ModelFactoryService>(CreateModelFactory());
@@ -73,6 +75,7 @@ namespace Infrastructure.Installers
             builder.RegisterInstance(_camera);
             builder.RegisterInstance(_cellViewPrefab);
             builder.RegisterInstance(_sidePanelView);
+            builder.RegisterInstance(_currencyView);
             builder.RegisterInstance<ICurrencyRepository>(_currencyRepository);
             builder.RegisterInstance<IGameplayBuildingsRepository>(_buildingRepositories);
             builder.RegisterInstance<ICameraSpeedRepository>(_cameraRepository);
