@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ContractsInterfaces.Repositories;
 using Domain.Gameplay.MessagesDTO;
 using MessagePipe;
+using Presentation.Gameplay.Views.Buildings;
 using UnityEngine;
 using VContainer;
 
@@ -55,6 +57,16 @@ namespace Presentation.Gameplay.Views.Grid
             }
         }
 
+        public void Place(BuildingView view, Vector2Int position)
+        {
+            CellView cell = _cellViews.FirstOrDefault(c => c.Position == position);
+            
+            if(cell == null)
+                return;
+
+            view.transform.position = cell.transform.position;
+        }
+        
         private void OnPointerEntered(CellView view)
         {
             PointerEnter?.Invoke(view);

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using ContractsInterfaces.Repositories;
 using UnityEngine;
 
@@ -11,5 +12,9 @@ namespace Infrastructure.Repositories.Gameplay.Buildings
         [SerializeField] private BuildingRepository[] _repositories;
 
         public IReadOnlyList<IBuildingRepository> Repositories => _repositories;
+        public IBuildingRepository Get(string name)
+        {
+            return _repositories.FirstOrDefault(r => r.name == name);
+        }
     }
 }

@@ -6,13 +6,11 @@ namespace Domain.Gameplay.MessagesDTO
     {
         public readonly string BuildingName;
         public readonly GridPosition Position;
-        public readonly Vector3 WorldPosition;
 
-        public TryPlaceDTO(string buildingName, GridPosition position, Vector3 worldPosition)
+        public TryPlaceDTO(string buildingName, GridPosition position)
         {
             BuildingName = buildingName;
             Position = position;
-            WorldPosition = worldPosition;
         }
     }
 }

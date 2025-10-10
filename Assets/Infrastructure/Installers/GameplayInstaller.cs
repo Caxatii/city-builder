@@ -7,6 +7,7 @@ using ContractsInterfaces.FactoriesApplication;
 using ContractsInterfaces.Repositories;
 using ContractsInterfaces.ServicesApplication;
 using ContractsInterfaces.UseCasesApplication;
+using Domain.Gameplay.MessagesDTO;
 using Infrastructure.Repositories.Application.Camera;
 using Infrastructure.Repositories.Gameplay.Buildings;
 using Infrastructure.Repositories.Gameplay.Buildings.Effects;
@@ -25,6 +26,8 @@ namespace Infrastructure.Installers
 {
     public class GameplayInstaller : LifetimeScope
     {
+        [SerializeField] private float _rewardDelay;
+        
         [SerializeField, Required] private CellView _cellViewPrefab;
         [SerializeField, Required] private CameraView _camera;
         [SerializeField, Required] private SidePanelView _sidePanelView;
@@ -52,11 +55,14 @@ namespace Infrastructure.Installers
         {
             builder.RegisterEntryPoint<CameraMoveUseCase>().As<ICameraMoveUseCase>();
             builder.RegisterEntryPoint<CameraZoomUseCase>();
+            
             builder.RegisterEntryPoint<GridInitializeUseCase>();
             builder.RegisterEntryPoint<GridSelectionUseCase>();
-            builder.RegisterEntryPoint<SidePanelInitializeUseCase>();
             builder.RegisterEntryPoint<GridGhostBuildUseCase>();
             builder.RegisterEntryPoint<GridPlacerUseCase>();
+            
+            builder.RegisterEntryPoint<SidePanelInitializeUseCase>();
+            builder.RegisterEntryPoint<AddGridGoldRewardUseCase>();
         }
 
         private void RegisterServices(IContainerBuilder builder)
@@ -64,6 +70,11 @@ namespace Infrastructure.Installers
             builder.RegisterEntryPoint<InputReaderService>().As<IInputReaderService>();
             builder.RegisterEntryPoint<SaveLoadService>().As<ISaveLoadService>();
             builder.RegisterEntryPoint<CurrencyService>();
+            
+            builder.RegisterEntryPoint(resolver => 
+                    new TimerService<AccrueRemunerationDTO>(
+                        _rewardDelay,
+                        resolver.Resolve<IPublisher<AccrueRemunerationDTO>>()), Lifetime.Singleton);
             
             builder.RegisterInstance<IModelFactoryService, ModelFactoryService>(CreateModelFactory());
         }
@@ -75,11 +86,13 @@ namespace Infrastructure.Installers
             builder.RegisterInstance(_sidePanelView);
             builder.RegisterInstance(_currencyView);
             builder.RegisterInstance<ICurrencyRepository>(_currencyRepository);
-            builder.RegisterInstance<IGameplayBuildingsRepository>(_buildingRepositories);
             builder.RegisterInstance<ICameraSpeedRepository>(_cameraRepository);
             builder.RegisterInstance<ICameraZoomRepository>(_cameraRepository);
             builder.RegisterInstance<IGridRepository>(_gridRepository);
             builder.RegisterInstance(_gridView);
+            
+            builder.RegisterInstance<IGameplayBuildingsRepository>(
+                new GameplayBindedBuildingsRepository(_buildingRepositories));
         }
 
         private IModelFactoryService CreateModelFactory()

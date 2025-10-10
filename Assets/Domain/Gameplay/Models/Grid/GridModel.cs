@@ -25,11 +25,15 @@ namespace Domain.Gameplay.Models.Grid
             position.Width < _cells.GetLength(0) && 
             position.Height < _cells.GetLength(1);
 
-        public IEnumerable<Building> EnumerateBuildings()
+        public IEnumerable<(Building building, GridPosition position)> EnumerateBuildings()
         {
-            foreach (Cell cell in _cells)
-                if (cell.IsEmpty == false)
-                    yield return cell.Building;
+            for (var i = 0; i < _cells.GetLength(0); i++)
+                for (var j = 0; j < _cells.GetLength(1); j++)
+                {
+                    var cell = _cells[i, j];
+                    if (cell.IsEmpty == false)
+                        yield return (cell.Building, new GridPosition(i, j));
+                }
         }
 
         public void Place(Building building, GridPosition position)

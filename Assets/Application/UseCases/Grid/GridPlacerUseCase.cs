@@ -31,15 +31,10 @@ namespace Application.UseCases.Grid
 
         private GridModel _gridModel;
         private CurrencyModel _currencyModel;
-
-        private Dictionary<string, IBuildingRepository> _bindRepositories;
-
+        
         public void Initialize()
         {
             _subscriber.Subscribe(this);
-            
-            _bindRepositories = _buildings.Repositories.
-                ToDictionary(key => key.Name, value => value);
         }
 
         public void PostInitialize()
@@ -53,7 +48,7 @@ namespace Application.UseCases.Grid
 
         public void Handle(TryPlaceDTO message)
         {
-            IBuildingRepository repository = _bindRepositories[message.BuildingName];
+            IBuildingRepository repository = _buildings.Get(message.BuildingName);
             
             if (_currencyModel.IsEnough(repository.Price) == false)
                 return;
@@ -62,16 +57,14 @@ namespace Application.UseCases.Grid
                 return;
 
             BuildingView prefab = Object.Instantiate(repository.Prefab);
-            prefab.transform.position = message.WorldPosition.AsUnity();
+            _gridView.Place(prefab, message.Position.AsUnity());
             
-            _gridModel.Place(_factoryService.Create<Building, IBuildingRepository>(repository), message.Position);
+            _gridModel.Place(_factoryService.Create<Building, IBuildingRepository>(repository),
+                message.Position);
 
             _currencyModel.TrySpend(repository.Price);
         }
 
-        public void Dispose()
-        {
-            
-        }
+        public void Dispose() { }
     }
 }

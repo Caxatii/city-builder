@@ -2,11 +2,11 @@ namespace Domain.Gameplay.Models.Buildings.Effects
 {
     public class IncreaseGoldEffect : EffectBase
     {
-        public IncreaseGoldEffect(int valuePerMinute)
+        public IncreaseGoldEffect(int value)
         {
-            ValuePerMinute = valuePerMinute;
+            Value = value;
         }
 
-        public int ValuePerMinute { get; }
+        public int Value { get; }
     }
 }

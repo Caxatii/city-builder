@@ -712,6 +712,7 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
+  _rewardDelay: 3
   _cellViewPrefab: {fileID: 7271529913042587483, guid: 243c3ebe4f88582439c877ed75cd9bfd, type: 3}
   _camera: {fileID: 650680526}
   _sidePanelView: {fileID: 621332441}

@@ -29,14 +29,10 @@ namespace Application.UseCases.Grid
         private CurrencyModel _currencyModel;
         private BuildingView _view;
         private IBuildingRepository _currentRepository;
-        private Dictionary<string, IBuildingRepository> _repositories;
         
         public void Initialize()
         {
             _subscriber.Subscribe(this);
-
-            _repositories = _buildingsRepository.Repositories.
-                ToDictionary(key => key.Name, value => value);
             
             _gridView.PointerEnter += OnPointerEnter;
             _gridView.Clicked += OnClicked;
@@ -50,7 +46,7 @@ namespace Application.UseCases.Grid
 
         public void Handle(BuildingButtonClickedDTO message)
         {
-            IBuildingRepository building = _repositories[message.Name];
+            IBuildingRepository building = _buildingsRepository.Get(message.Name);
 
             if (_currencyModel.IsEnough(building.Price) == false)
             {
@@ -67,9 +63,7 @@ namespace Application.UseCases.Grid
             if(_view == null)
                 return;
             
-            _tryPlacePublisher.Publish(new TryPlaceDTO(_currentRepository.Name,
-                view.Position.AsDomain(),
-                view.transform.position.AsDomain()));
+            _tryPlacePublisher.Publish(new TryPlaceDTO(_currentRepository.Name, view.Position.AsDomain()));
             
             Object.Destroy(_view.gameObject);
             _view = null;

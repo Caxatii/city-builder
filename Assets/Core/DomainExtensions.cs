@@ -1,4 +1,5 @@
 using Domain.Gameplay.Models.Grid;
+using UnityEngine;
 
 namespace Core
 {
@@ -19,9 +20,14 @@ namespace Core
             return new UnityEngine.Vector3(vector.X, vector.Y, vector.Z);
         }
 
-        public static Domain.Gameplay.Models.Grid.GridPosition AsDomain(this UnityEngine.Vector2Int vector2Int)
+        public static GridPosition AsDomain(this UnityEngine.Vector2Int vector2Int)
         {
             return new GridPosition(vector2Int.x, vector2Int.y);
+        }
+
+        public static UnityEngine.Vector2Int AsUnity(this GridPosition position)
+        {
+            return new Vector2Int(position.Width, position.Height);
         }
     }
 }
