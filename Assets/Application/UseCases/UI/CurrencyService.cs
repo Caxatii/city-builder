@@ -9,7 +9,6 @@ namespace Application.UseCases.UI
 {
     public class CurrencyService : IService, IPostInitializable
     {
-        [Inject] private ICurrencyRepository _currencyRepository;
         [Inject] private ISaveLoadService _saveLoadService;
         [Inject] private CurrencyView _view;
 
@@ -22,8 +21,7 @@ namespace Application.UseCases.UI
 
         public void PostInitialize()
         {
-            _currencyModel =
-                _saveLoadService.Load<CurrencyModel, ICurrencyRepository>(nameof(CurrencyType.Gold), _currencyRepository);
+            _currencyModel = _saveLoadService.Load<CurrencyModel, ICurrencyRepository>(nameof(CurrencyType.Gold));
 
             _currencyModel.Changed += OnChanged;
             _view.Text = _currencyModel.Value.ToString();

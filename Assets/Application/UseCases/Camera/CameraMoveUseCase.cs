@@ -16,8 +16,6 @@ namespace Application.UseCases.Camera
     {
         [Inject] private ISaveLoadService _saveLoadService;
         [Inject] private ISubscriber<RawMoveInputDTO> _subscriber;
-        [Inject] private ICameraSpeedRepository _cameraSpeedRepository;
-        [Inject] private ICameraZoomRepository _cameraZoomRepository;
         [Inject] private CameraView _camera;
 
         private CameraSpeedModel _cameraSpeedModel;
@@ -30,12 +28,8 @@ namespace Application.UseCases.Camera
 
         public void PostInitialize()
         {
-            _cameraSpeedModel = 
-                _saveLoadService.Load<CameraSpeedModel, ICameraSpeedRepository>(nameof(CameraSpeedModel),
-                    _cameraSpeedRepository);
-
-            _cameraZoomModel = _saveLoadService.Load<CameraZoomModel, ICameraZoomRepository>(nameof(CameraZoomModel),
-                _cameraZoomRepository);
+            _cameraSpeedModel = _saveLoadService.Load<CameraSpeedModel, ICameraSpeedRepository>(nameof(CameraSpeedModel));
+            _cameraZoomModel = _saveLoadService.Load<CameraZoomModel, ICameraZoomRepository>(nameof(CameraZoomModel));
         }
 
         public void Handle(RawMoveInputDTO message)

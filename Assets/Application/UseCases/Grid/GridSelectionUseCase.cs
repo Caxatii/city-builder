@@ -14,7 +14,6 @@ namespace Application.UseCases.Grid
     {
         [Inject] private GridView _gridView;
         [Inject] private ISaveLoadService _saveLoadService;
-        [Inject] private IGridRepository _gridRepository;
 
         private Color _green = Color.green;
         private Color _red = Color.red;
@@ -32,8 +31,7 @@ namespace Application.UseCases.Grid
 
         public void PostInitialize()
         {
-            _gridModel = 
-                _saveLoadService.Load<GridModel, IGridRepository>(nameof(GridModel), _gridRepository);
+            _gridModel = _saveLoadService.Load<GridModel, IGridRepository>(nameof(GridModel));
         }
 
         private void OnPointerEnter(CellView view)

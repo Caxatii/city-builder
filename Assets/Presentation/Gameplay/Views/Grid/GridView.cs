@@ -66,6 +66,16 @@ namespace Presentation.Gameplay.Views.Grid
 
             view.transform.position = cell.transform.position;
         }
+
+        public void Remove(Vector2Int position)
+        {
+            CellView cell = _cellViews.FirstOrDefault(c => c.Position == position);
+            
+            if(cell == null)
+                return;
+            
+            Destroy(cell.gameObject);
+        }
         
         private void OnPointerEntered(CellView view)
         {

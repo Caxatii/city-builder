@@ -19,7 +19,6 @@ namespace Application.UseCases.Grid
     public class GridGhostBuildUseCase : IUseCase, IPostInitializable, IMessageHandler<BuildingButtonClickedDTO>
     {
         [Inject] private IGameplayBuildingsRepository _buildingsRepository;
-        [Inject] private ICurrencyRepository _currencyRepository;
         [Inject] private ISaveLoadService _saveLoadService;
         [Inject] private GridView _gridView;
         
@@ -42,8 +41,7 @@ namespace Application.UseCases.Grid
 
         public void PostInitialize()
         {
-            _currencyModel =
-                _saveLoadService.Load<CurrencyModel, ICurrencyRepository>(nameof(CurrencyType.Gold), _currencyRepository);
+            _currencyModel = _saveLoadService.Load<CurrencyModel, ICurrencyRepository>(nameof(CurrencyType.Gold));
         }
 
         public void Handle(BuildingButtonClickedDTO message)

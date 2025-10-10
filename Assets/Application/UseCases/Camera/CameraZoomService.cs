@@ -14,7 +14,6 @@ namespace Application.UseCases.Camera
     {
         [Inject] private CameraView _cameraView;
         [Inject] private ISubscriber<ScrollChangedDTO> _subscriber;
-        [Inject] private ICameraZoomRepository _zoomRepository;
         [Inject] private ISaveLoadService _saveLoadService;
         
         private CameraZoomModel _zoomModel;
@@ -26,8 +25,7 @@ namespace Application.UseCases.Camera
 
         public void PostInitialize()
         {
-            _zoomModel =
-                _saveLoadService.Load<CameraZoomModel, ICameraZoomRepository>(nameof(CameraZoomModel), _zoomRepository);
+            _zoomModel = _saveLoadService.Load<CameraZoomModel, ICameraZoomRepository>(nameof(CameraZoomModel));
 
             _cameraView.Camera.orthographicSize = _zoomModel.CurrentProjectionSize;
         }

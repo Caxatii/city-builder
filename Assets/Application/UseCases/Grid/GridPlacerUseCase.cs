@@ -23,8 +23,6 @@ namespace Application.UseCases.Grid
         [Inject] private IModelFactoryService _factoryService;
         [Inject] private ISaveLoadService _saveLoadService;
         [Inject] private IGameplayBuildingsRepository _buildings;
-        [Inject] private IGridRepository _gridRepository;
-        [Inject] private ICurrencyRepository _currencyRepository;
         [Inject] private ISubscriber<TryPlaceDTO> _subscriber;
         
         [Inject] private GridView _gridView;
@@ -39,11 +37,9 @@ namespace Application.UseCases.Grid
 
         public void PostInitialize()
         {
-            _gridModel = 
-                _saveLoadService.Load<GridModel, IGridRepository>(nameof(GridModel), _gridRepository);
+            _gridModel = _saveLoadService.Load<GridModel, IGridRepository>(nameof(GridModel));
 
-            _currencyModel =
-                _saveLoadService.Load<CurrencyModel, ICurrencyRepository>(nameof(CurrencyType.Gold), _currencyRepository);
+            _currencyModel = _saveLoadService.Load<CurrencyModel, ICurrencyRepository>(nameof(CurrencyType.Gold));
         }
 
         public void Handle(TryPlaceDTO message)

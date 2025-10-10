@@ -49,7 +49,6 @@ namespace Infrastructure.Installers
             RegisterServices(builder);
             
             RegisterUseCases(builder);
-            
         }
 
         private void RegisterUseCases(IContainerBuilder builder)
@@ -68,8 +67,10 @@ namespace Infrastructure.Installers
 
         private void RegisterServices(IContainerBuilder builder)
         {
+            builder.RegisterEntryPoint(CreateSaveService,
+                Lifetime.Singleton).As<ISaveLoadService>();
+            
             builder.RegisterEntryPoint<InputReaderService>().As<IInputReaderService>();
-            builder.RegisterEntryPoint<SaveLoadService>().As<ISaveLoadService>();
             builder.RegisterEntryPoint<CurrencyService>();
             
             RegisterTimer<AccrueRemunerationDTO>(builder, _rewardDelay);
@@ -78,17 +79,31 @@ namespace Infrastructure.Installers
             builder.RegisterInstance<IModelFactoryService, ModelFactoryService>(CreateModelFactory());
         }
 
+        private ISaveLoadService CreateSaveService(IObjectResolver resolver)
+        {
+            ISaveLoadService service = new SaveLoadService(resolver.Resolve<IModelFactoryService>(),
+                resolver.Resolve<ISubscriber<SaveGameDTO>>());
+            
+            service.AddConfig<ICurrencyRepository>(_currencyRepository);
+            service.AddConfig<ICameraSpeedRepository>(_cameraRepository);
+            service.AddConfig<ICameraZoomRepository>(_cameraRepository);
+            service.AddConfig<IGridRepository>(_gridRepository);
+
+            return service;
+        }
+
         private void RegisterRepositories(IContainerBuilder builder)
         {
             builder.RegisterInstance(_camera);
             builder.RegisterInstance(_cellViewPrefab);
             builder.RegisterInstance(_sidePanelView);
             builder.RegisterInstance(_currencyView);
+            builder.RegisterInstance(_gridView);
+            
             builder.RegisterInstance<ICurrencyRepository>(_currencyRepository);
             builder.RegisterInstance<ICameraSpeedRepository>(_cameraRepository);
             builder.RegisterInstance<ICameraZoomRepository>(_cameraRepository);
             builder.RegisterInstance<IGridRepository>(_gridRepository);
-            builder.RegisterInstance(_gridView);
             
             builder.RegisterInstance<IGameplayBuildingsRepository>(
                 new GameplayBindedBuildingsRepository(_buildingRepositories));

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ContractsInterfaces.FactoriesApplication;
 using ContractsInterfaces.Repositories;
@@ -14,11 +15,19 @@ namespace Application.Services
     {
         private const string SaveKey = "DATA";
 
-        [Inject] private IModelFactoryService _factoryService;
-        [Inject] private ISubscriber<SaveGameDTO> _subscriber;
+        private IModelFactoryService _factoryService;
+        private ISubscriber<SaveGameDTO> _subscriber;
 
         private JsonSerializerSettings _serializerSettings;
+        
+        private Dictionary<Type, IRepository> _defaultRepositories = new();
         private Dictionary<string, object> _data;
+
+        public SaveLoadService(IModelFactoryService factoryService, ISubscriber<SaveGameDTO> subscriber)
+        {
+            _factoryService = factoryService;
+            _subscriber = subscriber;
+        }
 
         public void Initialize()
         {
@@ -46,6 +55,16 @@ namespace Application.Services
             _data.Add(key, newModel);
             
             return newModel;
+        }
+
+        public TResult Load<TResult, TConfig>(string key) where TConfig : IRepository
+        {
+            return Load<TResult, TConfig>(key, (TConfig)_defaultRepositories[typeof(TConfig)]);
+        }
+
+        public void AddConfig<TConfig>(TConfig configSample) where TConfig : IRepository
+        {
+            _defaultRepositories.Add(typeof(TConfig), configSample);
         }
 
         public void Save()
