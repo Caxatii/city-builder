@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7777762564635614161}
   - component: {fileID: 9129678309572179457}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WindMill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,9 +53,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7777762564635614161}
     m_Modifications:
+    - target: {fileID: 109246, guid: 425a2375bbeaffd4aa8aefea2454c645, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 133066, guid: 425a2375bbeaffd4aa8aefea2454c645, type: 3}
       propertyPath: m_Name
       value: Village_WindMill
+      objectReference: {fileID: 0}
+    - target: {fileID: 133066, guid: 425a2375bbeaffd4aa8aefea2454c645, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 139130, guid: 425a2375bbeaffd4aa8aefea2454c645, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 185762, guid: 425a2375bbeaffd4aa8aefea2454c645, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 198726, guid: 425a2375bbeaffd4aa8aefea2454c645, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 406706, guid: 425a2375bbeaffd4aa8aefea2454c645, type: 3}
       propertyPath: m_LocalScale.x

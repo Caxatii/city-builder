@@ -11,7 +11,7 @@ namespace Application.Services.Factories
     {
         private Dictionary<Type, IModelFactory> _effectsFactories = new();
 
-        public void Add<T>(IModelFactory factory)
+        public void Add<T>(IModelFactory factory) where T : IRepository
         {
             _effectsFactories[typeof(T)] = factory;
         }

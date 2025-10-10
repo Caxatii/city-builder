@@ -11,6 +11,8 @@ namespace Domain.Gameplay.Models.Currency
 
         public int Value { get; private set; }
 
+        public event Action<int> Changed; 
+
         public bool IsEnough(int value) => Value >= value;
 
         public bool TrySpend(int value)
@@ -21,6 +23,7 @@ namespace Domain.Gameplay.Models.Currency
                 return false;
 
             Value -= value;
+            Changed?.Invoke(Value);
             return true;
         }
 
@@ -29,6 +32,7 @@ namespace Domain.Gameplay.Models.Currency
             ValidateNegativeValue(value, nameof(Increase));
 
             Value += value;
+            Changed?.Invoke(Value);
         }
 
         private void ValidateNegativeValue(int value, string operationName)

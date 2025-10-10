@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 647397396987635541}
   - component: {fileID: 26715761711260629}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: House
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,9 +53,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 647397396987635541}
     m_Modifications:
+    - target: {fileID: 112584, guid: a154eb6d964c0254596a497f1a05c4aa, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 136256, guid: a154eb6d964c0254596a497f1a05c4aa, type: 3}
       propertyPath: m_Name
       value: Village_House_V3
+      objectReference: {fileID: 0}
+    - target: {fileID: 136256, guid: a154eb6d964c0254596a497f1a05c4aa, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 190284, guid: a154eb6d964c0254596a497f1a05c4aa, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 426340, guid: a154eb6d964c0254596a497f1a05c4aa, type: 3}
       propertyPath: m_LocalScale.x

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Application.Services;
 using Application.Services.Factories;
 using Application.UseCases.Camera;
@@ -10,6 +9,8 @@ using ContractsInterfaces.ServicesApplication;
 using ContractsInterfaces.UseCasesApplication;
 using Infrastructure.Repositories.Application.Camera;
 using Infrastructure.Repositories.Gameplay.Buildings;
+using Infrastructure.Repositories.Gameplay.Buildings.Effects;
+using Infrastructure.Repositories.Gameplay.Currency;
 using Infrastructure.Repositories.Gameplay.Grid;
 using MessagePipe;
 using Presentation.Gameplay.Views;
@@ -31,6 +32,7 @@ namespace Infrastructure.Installers
         [SerializeField, Required] private CameraRepository _cameraRepository;
         [SerializeField, Required] private GridView _gridView;
         [SerializeField, Required] private GridRepository _gridRepository;
+        [SerializeField, Required] private CurrencyRepository _currencyRepository;
 
         [SerializeField] private GameplayBuildingsRepository _buildingRepositories;
         
@@ -41,11 +43,18 @@ namespace Infrastructure.Installers
             RegisterRepositories(builder);
             RegisterServices(builder);
             
+            RegisterUseCases(builder);
+        }
+
+        private void RegisterUseCases(IContainerBuilder builder)
+        {
             builder.RegisterEntryPoint<CameraMoveUseCase>().As<ICameraMoveUseCase>();
             builder.RegisterEntryPoint<CameraZoomUseCase>();
             builder.RegisterEntryPoint<GridInitializeUseCase>();
             builder.RegisterEntryPoint<GridSelectionUseCase>();
             builder.RegisterEntryPoint<SidePanelInitializeUseCase>();
+            builder.RegisterEntryPoint<GridGhostBuildUseCase>();
+            builder.RegisterEntryPoint<GridPlacerUseCase>();
         }
 
         private void RegisterServices(IContainerBuilder builder)
@@ -64,6 +73,7 @@ namespace Infrastructure.Installers
             builder.RegisterInstance(_camera);
             builder.RegisterInstance(_cellViewPrefab);
             builder.RegisterInstance(_sidePanelView);
+            builder.RegisterInstance<ICurrencyRepository>(_currencyRepository);
             builder.RegisterInstance<IGameplayBuildingsRepository>(_buildingRepositories);
             builder.RegisterInstance<ICameraSpeedRepository>(_cameraRepository);
             builder.RegisterInstance<ICameraZoomRepository>(_cameraRepository);
@@ -80,6 +90,7 @@ namespace Infrastructure.Installers
             factoryService.Add<IIncreaseGoldEffectRepository, IIncreaseEffectFactory>(new IncreaseEffectFactory());
             factoryService.Add<ICameraSpeedRepository, ICameraSpeedFactory>(new CameraSpeedFactory());
             factoryService.Add<ICameraZoomRepository, ICameraZoomFactory>(new CameraZoomFactory());
+            factoryService.Add<ICurrencyRepository, ICurrencyFactory>(new CurrencyFactory());
 
             return factoryService;
         }
@@ -88,7 +99,7 @@ namespace Infrastructure.Installers
         {
             BuildingFactory factory = new BuildingFactory();
 
-            factory.Add<IIncreaseEffectFactory>(new IncreaseEffectFactory());
+            factory.Add<IncreaseGoldEffectRepository>(new IncreaseEffectFactory());
             
             return factory;
         }
