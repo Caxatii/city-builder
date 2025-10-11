@@ -1,4 +1,5 @@
 using System;
+using ContractsInterfaces.Repositories;
 using Presentation.Gameplay.Views.Buildings;
 using TriInspector;
 using UnityEngine;
@@ -16,9 +17,9 @@ namespace Presentation.Gameplay.Views.Grid
         
         public Vector2Int Position { get; private set; } 
 
-        public event Action<CellView> Clicked;
-        public event Action<CellView> PointerEntered;
-        public event Action<CellView> PointerExit;
+        public event Action<ICellView> Clicked;
+        public event Action<ICellView> PointerEntered;
+        public event Action<ICellView> PointerExit;
         
         private void Awake()
         {
@@ -31,9 +32,9 @@ namespace Presentation.Gameplay.Views.Grid
             Position = position;
         }
 
-        public void Place(BuildingView view)
+        public void Place(IBuildingView view)
         {
-            _buildingView = view;
+            _buildingView = view as BuildingView;
         }
 
         public void Remove()

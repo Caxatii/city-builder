@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
-using Application.Services;
+using System;
 using ContractsInterfaces.Repositories;
 using ContractsInterfaces.ServicesApplication;
 using ContractsInterfaces.UseCasesApplication;
@@ -14,6 +12,7 @@ using Presentation.Gameplay.Views.Grid;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using Object = UnityEngine.Object;
 
 namespace Application.UseCases.Grid
 {
@@ -21,7 +20,9 @@ namespace Application.UseCases.Grid
     {
         [Inject] private IGameplayBuildingsRepository _buildingsRepository;
         [Inject] private ISaveLoadService _saveLoadService;
-        [Inject] private GridView _gridView;
+        [Inject] private IGridView _gridView;
+        
+        [Inject] private Func<IBuildingView, BuildingView> _viewFactory;
         
         [Inject] private ISubscriber<BuildingButtonClickedDTO> _subscriber;
         [Inject] private IPublisher<NotEnoughResources> _notEnoughPublisher;
@@ -67,7 +68,7 @@ namespace Application.UseCases.Grid
             if(_view)
                 Object.Destroy(_view.gameObject);
             
-            _view = Object.Instantiate(building.Prefab);
+            _view = _viewFactory(building.Prefab);
             _view.transform.position = GetCellViewPosition();
             
             _currentRepository = building;
@@ -78,7 +79,7 @@ namespace Application.UseCases.Grid
             return _gridView.GetCell(_selectedCellModel.Position.AsUnity()).transform.position;
         }
 
-        private void OnClicked(CellView view)
+        private void OnClicked(ICellView view)
         {
             if(_view == null)
                 return;

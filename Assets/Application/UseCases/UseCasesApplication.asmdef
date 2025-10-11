@@ -1,0 +1,11 @@
+{
+  "name": "UseCasesApplication",
+  "references": [
+    "PresentationGameplay",
+    "DomainApplication",
+    "DomainGameplay",
+    "MessagePipe",
+    "VContainer",
+    "ContractsInterfaces"
+  ]
+}

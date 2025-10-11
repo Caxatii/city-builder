@@ -1,24 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using ContractsInterfaces.Repositories;
-using Domain.Gameplay.MessagesDTO;
-using MessagePipe;
 using Presentation.Gameplay.Views.Buildings;
 using UnityEngine;
-using VContainer;
 
 namespace Presentation.Gameplay.Views.Grid
 {
-    public class GridView : MonoBehaviour
+    public class GridView : MonoBehaviour, IGridView 
     {
-        [Inject] private IPublisher<PointerEnteredDTO> _enterPublisher;
-
         private Dictionary<Vector2Int, CellView> _cellViews = new();
 
-        public event Action<CellView> Clicked;
-        public event Action<CellView> PointerEnter;
-        public event Action<CellView> PointerExit;
+        public event Action<ICellView> Clicked;
+        public event Action<ICellView> PointerEntered;
+        public event Action<ICellView> PointerExit;
         
         private void OnDisable()
         {
@@ -30,7 +24,7 @@ namespace Presentation.Gameplay.Views.Grid
             }
         }
 
-        public void Initialize(CellView cellView, IGridRepository repository)
+        public void Initialize(ICellView cellView, IGridRepository repository)
         {
             Vector3 position = transform.position;
                     
@@ -39,7 +33,7 @@ namespace Presentation.Gameplay.Views.Grid
                 for (int j = 1; j <= repository.GridSize.y; j++)
                 {
                     Vector2Int gridPosition = new Vector2Int(i, j);
-                    CellView view = Instantiate(cellView);
+                    CellView view = Instantiate(cellView as CellView);
                     
                     view.transform.localScale = Vector3.one * repository.CellSize;
 
@@ -59,7 +53,7 @@ namespace Presentation.Gameplay.Views.Grid
             }
         }
 
-        public void Place(BuildingView view, Vector2Int position)
+        public void Place(IBuildingView view, Vector2Int position)
         {
             if(_cellViews.TryGetValue(position, out CellView cell) == false)
                 return;
@@ -76,23 +70,23 @@ namespace Presentation.Gameplay.Views.Grid
             cell.Remove();
         }
 
-        public CellView GetCell(Vector2Int position)
+        public ICellView GetCell(Vector2Int position)
         {
             _cellViews.TryGetValue(position, out CellView cell);
             return cell;
         }
         
-        private void OnPointerEntered(CellView view)
+        private void OnPointerEntered(ICellView view)
         {
-            PointerEnter?.Invoke(view);
+            PointerEntered?.Invoke(view);
         }
 
-        private void OnClicked(CellView view)
+        private void OnClicked(ICellView view)
         {
             Clicked?.Invoke(view);
         }
 
-        private void OnPointerExit(CellView view)
+        private void OnPointerExit(ICellView view)
         {
             PointerExit?.Invoke(view);
         }

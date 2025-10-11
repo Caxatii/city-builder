@@ -1,7 +1,6 @@
 using ContractsInterfaces.ServicesApplication;
 using Core;
 using Domain.Gameplay.MessagesDTO;
-using Domain.Gameplay.Models;
 using MessagePipe;
 using UnityEngine;
 using UnityEngine.InputSystem;

@@ -1,0 +1,9 @@
+{
+  "name": "InfrastructureRepositories",
+  "references": [
+    "TriInspector",
+    "PresentationGameplay",
+    "CoreApplication",
+    "ContractsInterfaces"
+  ]
+}

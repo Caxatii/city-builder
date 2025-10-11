@@ -16,7 +16,7 @@ namespace Application.UseCases.Grid
     {
         [Inject] private ISaveLoadService _saveLoadService;
         [Inject] private ISubscriber<RemoveBuildDTO> _subscriber;
-        [Inject] private GridView _view;
+        [Inject] private IGridView _view;
         
         private GridModel _model;
         private SelectedCellModel _selectedCell;

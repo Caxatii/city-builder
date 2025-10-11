@@ -14,7 +14,6 @@ namespace Application.UseCases.Grid
     public class AddGridGoldRewardUseCase : IUseCase, IPostInitializable, IMessageHandler<AccrueRemunerationDTO>
     {
         [Inject] private IGridRepository _gridRepository;
-        [Inject] private ICurrencyRepository _currencyRepository;
         [Inject] private ISaveLoadService _saveLoadService;
 
         [Inject] private ISubscriber<AccrueRemunerationDTO> _subscriber;

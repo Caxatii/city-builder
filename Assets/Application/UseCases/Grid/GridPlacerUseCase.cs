@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ContractsInterfaces.FactoriesApplication;
@@ -12,9 +13,9 @@ using Domain.Gameplay.Models.Grid;
 using MessagePipe;
 using Presentation.Gameplay.Views.Buildings;
 using Presentation.Gameplay.Views.Grid;
-using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using Object = UnityEngine.Object;
 
 namespace Application.UseCases.Grid
 {
@@ -23,10 +24,12 @@ namespace Application.UseCases.Grid
         [Inject] private IModelFactoryService _factoryService;
         [Inject] private ISaveLoadService _saveLoadService;
         [Inject] private IGameplayBuildingsRepository _buildings;
+        [Inject] private IGridView _gridView;
+
         [Inject] private ISubscriber<TryPlaceBuildingDTO> _subscriber;
         
-        [Inject] private GridView _gridView;
-
+        [Inject] private Func<IBuildingView, BuildingView> _viewFactory;
+        
         private GridModel _gridModel;
         private CurrencyModel _currencyModel;
         
@@ -52,7 +55,7 @@ namespace Application.UseCases.Grid
             if(_gridModel.IsEmpty(message.Position) == false)
                 return;
 
-            BuildingView prefab = Object.Instantiate(repository.Prefab);
+            BuildingView prefab = _viewFactory(repository.Prefab);
             _gridView.Place(prefab, message.Position.AsUnity());
             
             _gridModel.Place(_factoryService.Create<Building, IBuildingRepository>(repository),

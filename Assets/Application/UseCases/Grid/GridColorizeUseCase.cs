@@ -14,7 +14,7 @@ namespace Application.UseCases.Grid
     {
         [Inject] private ICellColorizeRepository _colorizeRepository;
         [Inject] private ISaveLoadService _saveLoadService;
-        [Inject] private GridView _gridView;
+        [Inject] private IGridView _gridView;
 
         private SelectedCellModel _selectedCell;
         private GridModel _gridModel;

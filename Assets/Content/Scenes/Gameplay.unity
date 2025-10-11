@@ -630,6 +630,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Presentation.Gameplay.Views.CameraView
   _camera: {fileID: 330585545}
+--- !u!1 &744068892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 744068893}
+  - component: {fileID: 744068894}
+  m_Layer: 0
+  m_Name: Input
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &744068893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744068892}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2056157724}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &744068894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744068892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ece56432306f439fb48fc8ee7fb44ab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Infrastructure::Infrastructure.Installers.InputServiceInstaller
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,6 +723,213 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1140604658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1140604659}
+  - component: {fileID: 1140604660}
+  m_Layer: 0
+  m_Name: BuildingFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1140604659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140604658}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2056157724}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1140604660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140604658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6fce9e5dac4c9a94559bddc7c0733c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Infrastructure::Infrastructure.Installers.BuildingFactoryInstaller
+--- !u!1 &1720023719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1720023720}
+  - component: {fileID: 1720023721}
+  - component: {fileID: 1720023722}
+  - component: {fileID: 1720023724}
+  - component: {fileID: 1720023723}
+  - component: {fileID: 1720023725}
+  - component: {fileID: 1720023727}
+  - component: {fileID: 1720023726}
+  - component: {fileID: 1720023728}
+  - component: {fileID: 1720023729}
+  m_Layer: 0
+  m_Name: Gameplay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1720023720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720023719}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2056157724}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1720023721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720023719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e365d1fc154040e89188114c4382cb32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Infrastructure::Infrastructure.Installers.ModelFactoryInstaller
+--- !u!114 &1720023722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720023719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c78a2c81f4a24a92a4a7620a79d91b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Infrastructure::Infrastructure.Installers.SaveLoadInstaller
+--- !u!114 &1720023723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720023719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab79b3c78e94c6083c08b8d808e9fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Infrastructure::Infrastructure.Installers.CameraInstaller
+  _camera: {fileID: 650680526}
+  _cameraRepository: {fileID: 11400000, guid: 21268d0f4ea2fe643828246507d2948b, type: 2}
+--- !u!114 &1720023724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720023719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffb54b1306164ca98d65d6d41d1fc4d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Infrastructure::Infrastructure.Installers.DefaultLoadRepositoriesInstaller
+  _repositories:
+  - {fileID: 11400000, guid: 6f8ace34f4b2b6b4e8f3c4052d527f47, type: 2}
+  - {fileID: 11400000, guid: 471bb86337cd61d44bc11abd55327dbb, type: 2}
+  - {fileID: 11400000, guid: 21268d0f4ea2fe643828246507d2948b, type: 2}
+--- !u!114 &1720023725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720023719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 573d256ca00f4f179d874849f1804f96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Infrastructure::Infrastructure.Installers.CurrencyInstaller
+  _currencyView: {fileID: 215279097}
+--- !u!114 &1720023726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720023719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6e2d022c6b4361a1e7c25356e2eca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Infrastructure::Infrastructure.Installers.ViewsInstaller
+  _views:
+  - {fileID: 2121128486}
+  - {fileID: 7271529913042587483, guid: 243c3ebe4f88582439c877ed75cd9bfd, type: 3}
+--- !u!114 &1720023727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720023719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e24f0f9f3640d7949a73f791bd33ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Infrastructure::Infrastructure.Installers.RepositoriesInstaller
+  _buildingRepositories: {fileID: 11400000, guid: ee6df6003f9ba6e4fa4e02c549b41a25, type: 2}
+  _repositories:
+  - {fileID: 11400000, guid: 94a8f48619cf24f4d84401b644e9b546, type: 2}
+  - {fileID: 11400000, guid: 471bb86337cd61d44bc11abd55327dbb, type: 2}
+--- !u!114 &1720023728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720023719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc36b32d77544659b6ece6680b18469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Infrastructure::Infrastructure.Installers.GameplayGridUseCasesInstaller
+--- !u!114 &1720023729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720023719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5705ae87caf463889fdda3883bf06d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Infrastructure::Infrastructure.Installers.SidePanelInstaller
+  _sidePanelView: {fileID: 621332441}
 --- !u!1 &2056157722
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,18 +963,6 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
-  _rewardDelay: 3
-  _autoSaveDelay: 15
-  _cellViewPrefab: {fileID: 7271529913042587483, guid: 243c3ebe4f88582439c877ed75cd9bfd, type: 3}
-  _camera: {fileID: 650680526}
-  _sidePanelView: {fileID: 621332441}
-  _currencyView: {fileID: 215279097}
-  _cameraRepository: {fileID: 11400000, guid: 21268d0f4ea2fe643828246507d2948b, type: 2}
-  _gridView: {fileID: 2121128486}
-  _gridRepository: {fileID: 11400000, guid: 471bb86337cd61d44bc11abd55327dbb, type: 2}
-  _currencyRepository: {fileID: 11400000, guid: 6f8ace34f4b2b6b4e8f3c4052d527f47, type: 2}
-  _cellColorizeRepository: {fileID: 11400000, guid: 94a8f48619cf24f4d84401b644e9b546, type: 2}
-  _buildingRepositories: {fileID: 11400000, guid: ee6df6003f9ba6e4fa4e02c549b41a25, type: 2}
 --- !u!4 &2056157724
 Transform:
   m_ObjectHideFlags: 0
@@ -736,7 +975,10 @@ Transform:
   m_LocalPosition: {x: 44.38295, y: 42.39881, z: -61.90897}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1720023720}
+  - {fileID: 744068893}
+  - {fileID: 1140604659}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2066586969
@@ -885,6 +1127,6 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 2066586972}
   - {fileID: 2121128485}
-  - {fileID: 2056157724}
   - {fileID: 621332440}
   - {fileID: 215279096}
+  - {fileID: 2056157724}

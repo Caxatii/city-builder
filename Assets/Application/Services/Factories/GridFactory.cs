@@ -1,7 +1,6 @@
 using ContractsInterfaces.FactoriesApplication;
 using ContractsInterfaces.Repositories;
 using Domain.Gameplay.Models.Grid;
-using Infrastructure.Repositories.Gameplay.Grid;
 
 namespace Application.Services.Factories
 {

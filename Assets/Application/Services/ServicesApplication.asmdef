@@ -1,0 +1,13 @@
+{
+  "name": "ServicesApplication",
+  "references": [
+    "PresentationGameplay",
+    "UniTask",
+    "Unity.InputSystem",
+    "DomainApplication",
+    "DomainGameplay",
+    "MessagePipe",
+    "VContainer",
+    "ContractsInterfaces"
+  ]
+}

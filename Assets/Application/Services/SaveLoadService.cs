@@ -79,7 +79,12 @@ namespace Application.Services
 
         public void AddConfig<TConfig>(TConfig configSample) where TConfig : IRepository
         {
-            _defaultRepositories.Add(typeof(TConfig), configSample);
+            AddConfig(configSample, typeof(TConfig));
+        }
+
+        public void AddConfig(IRepository configSample, Type type)
+        {
+            _defaultRepositories.Add(type, configSample);
         }
 
         public void Save()

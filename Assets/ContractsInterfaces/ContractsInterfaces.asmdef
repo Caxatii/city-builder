@@ -1,0 +1,9 @@
+{
+  "name": "ContractsInterfaces",
+  "references": [
+    "VContainer",
+    "MessagePipe",
+    "DomainApplication",
+    "DomainGameplay"
+  ]
+}

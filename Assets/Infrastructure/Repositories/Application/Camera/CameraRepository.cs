@@ -1,11 +1,13 @@
+using Application.Core.Attributes;
 using ContractsInterfaces.Repositories;
 using UnityEngine;
 
 namespace Infrastructure.Repositories.Application.Camera
 {
+    [RepositoryType(typeof(ICameraSpeedRepository), typeof(ICameraZoomRepository))]
     [CreateAssetMenu(fileName = "CameraRepository", 
         menuName = "Gameplay/Settings/Camera Repository")]
-    public class CameraRepository : ScriptableObject, ICameraSpeedRepository, ICameraZoomRepository
+    public class CameraRepository : RepositoryBase, ICameraSpeedRepository, ICameraZoomRepository
     {
         [SerializeField] private float _minSpeed;
         [SerializeField] private float _maxSpeed;

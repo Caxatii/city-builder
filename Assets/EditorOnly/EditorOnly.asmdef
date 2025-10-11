@@ -1,0 +1,8 @@
+{
+  "name": "EditorOnly",
+  "references": [
+    "TriInspector",
+    "InfrastructureRepositories",
+    "Infrastructure"
+  ]
+}

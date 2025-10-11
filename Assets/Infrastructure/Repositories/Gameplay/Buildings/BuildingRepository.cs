@@ -8,7 +8,7 @@ namespace Infrastructure.Repositories.Gameplay.Buildings
 {
     [CreateAssetMenu(fileName = "BuildingRepository", 
         menuName = "Gameplay/Building Repository")]
-    public class BuildingRepository : ScriptableObject, IBuildingRepository
+    public class BuildingRepository : RepositoryBase, IBuildingRepository
     {
         [SerializeField] private int _price;
         [SerializeField] private int _level;
@@ -26,8 +26,8 @@ namespace Infrastructure.Repositories.Gameplay.Buildings
 
         public Sprite Preview => _preview;
 
-        public BuildingView Prefab => _prefab;
+        public IBuildingView Prefab => _prefab;
         
-        public BuildingEffectRepositoryBase Effect => _effect;
+        public IBuildingEffectRepository Effect => _effect;
     }
 }

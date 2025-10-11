@@ -1,0 +1,7 @@
+{
+  "name": "PresentationGameplay",
+  "references": [
+    "TriInspector",
+    "ContractsInterfaces"
+  ]
+}

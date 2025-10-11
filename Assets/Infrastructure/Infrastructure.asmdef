@@ -1,0 +1,16 @@
+{
+  "name": "Infrastructure",
+  "references": [
+    "MessagePipe.VContainer",
+    "InfrastructureRepositories",
+    "CoreApplication",
+    "DomainGameplay",
+    "VContainer",
+    "MessagePipe",
+    "TriInspector",
+    "ServicesApplication",
+    "UseCasesApplication",
+    "ContractsInterfaces",
+    "PresentationGameplay"
+  ]
+}

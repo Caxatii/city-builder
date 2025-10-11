@@ -1,3 +1,4 @@
+using System;
 using ContractsInterfaces.Repositories;
 using Domain.Gameplay.MessagesDTO;
 using MessagePipe;
@@ -13,6 +14,7 @@ namespace ContractsInterfaces.ServicesApplication
         public TResult Load<TResult>(string key = null) where TResult : new();
         
         public void AddConfig<TConfig>(TConfig configSample) where TConfig : IRepository;
+        public void AddConfig(IRepository configSample, Type type);
         
         public void Save();
     }
